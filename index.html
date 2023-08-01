@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="https://www.1stdecor.com/wp-content/uploads/2019/08/cropped-favicon-192x192.png"
+      sizes="192x192"
+    />
+    <meta
+      name="msapplication-TileImage"
+      content="https://www.1stdecor.com/wp-content/uploads/2019/08/cropped-favicon-270x270.png"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="Decoration, FIRST FOR DECORATION, PRODUCTS,OUR PARTNERS"
+    />
+    <title>1st For Decoration | Since 1982</title>
+    <!-- Normalize -->
+    <link rel="stylesheet" href="css/Normalize.css" />
+    <!-- Main File Of Css -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- Font Awesome -->
+    <link
+      src="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <script>
+    window.onload = () => {
+      fetch('https://1stdecor.pythonanywhere.com/api/projects')
+        .then(response => response.json())
+        .then(data => {
+          const list = document.getElementById('projects')
+          const con = document.getElementById('container')
+          data.forEach(item => {
+            if (item.name !== null || item.image !== null) {
+              const box = document.createElement('div')
+              const image = document.createElement('img')
+              const container = document.createElement('div')
+              const heading = document.createElement('h3')
+              box.className = 'box'
+              container.className = 'container'
+              image.src = item.image
+              image.className = 'image'
+              image.width = 500
+              image.alt = item.nameEN
+              heading.textContent = item.nameEN
+              box.appendChild(image)
+
+              con.appendChild(box)
+              list.appendChild(con)
+            }
+          })
+        })
+        .catch(error => console.error(error))
+      if (
+        localStorage.getItem('lang') === 'en' ||
+        localStorage.getItem('lang') === null
+      ) {
+        localStorage.setItem('lang', 'en')
+      } else {
+        localStorage.setItem('lang', 'ar')
+        window.location.pathname = 'page/'
+      }
+    }
+    fetch('https://1stdecor.pythonanywhere.com/api/products')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('parent-of-box')
+        data.forEach(item => {
+          if (item.name !== null || item.image !== null) {
+            const box = document.createElement('div')
+            const image = document.createElement('img')
+            const content = document.createElement('div')
+            const heading = document.createElement('h3')
+            box.className = 'box'
+            content.className = 'content'
+            image.src = item.image
+            image.width = 500
+            image.height = 500
+            image.alt = item.nameEN
+            heading.textContent = item.nameEN
+            box.appendChild(image)
+            content.appendChild(heading)
+            box.appendChild(content)
+            list.appendChild(box)
+          }
+        })
+      })
+      .catch(error => console.error(error))
+  </script>
+  <body>
+    <!-- Start Heading -->
+    <div class="splash">
+      <img
+        class="fade-in"
+        src="images/logo.png"
+        alt="aw"
+        height="80%"
+        width="30%"
+      />
+      <br />
+      <h1 class="fade-in">Welcome To My Website</h1>
+    </div>
+    <header>
+      <div class="container">
+        <a href="/" class="logo">
+          <img src="./images/logo.png" alt="logo" />
+        </a>
+        <ul class="main-nav">
+          <li><a href="#about">ABOUT US</a></li>
+          <li><a href="#products">OUR PRODUCTS</a></li>
+          <li><a href="#projects">OUR PROJECTS</a></li>
+          <li><a href="#contact">CONTACT US</a></li>
+          <li>
+            <a>
+              <button class="btn" onclick="handleOnSelectEnglish()">EN</button>
+              <button class="btn" onclick="handleOnSelectArabic()">AR</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!-- End Heading -->
+    <!-- Start Landing -->
+    <div class="landing" id="landing">
+      <div class="container">
+        <div class="text">
+          <marquee>MODREN DECORATION BY</marquee>
+
+          <br />
+          <h1 style="font-weight: 600">FIRST FOR DECORATION</h1>
+        </div>
+        <div class="image">
+          <img
+            src="images/main.jpg"
+            height="300px"
+            style="
+              border-top-left-radius: 40px;
+              border-bottom-right-radius: 40px;
+              border-radius: 20px;
+            "
+            alt=""
+          />
+        </div>
+      </div>
+      <a href="#articles" class="go-down">
+        <i class="fas fa-angle-double-down fa-2x"></i>
+      </a>
+    </div>
+    <!-- End Landing -->
+    <!-- Start Events -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+      <i class="far fa-hand-pointer" style="font-size: 24px"></i>
+    </button>
+
+    <div class="events" id="about">
+      <h2 class="main-title">ABOUT US</h2>
+      <div class="dots-up dots"></div>
+      <div class="dots-down dots"></div>
+      <div class="container">
+        <img
+          src="images/bg.jpg"
+          width="400PX"
+          style="
+            border-top-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            border-radius: 20px;
+          "
+          alt=""
+        />
+        <div class="info">
+          <h2 class="title">VISION & MISSION</h2>
+          <p class="description">
+            We are committed to making FFD a reliable and trustful company by
+            abiding to the highest level of ethics, integrity and dedication. We
+            aim at providing specialized and diverse solutions that will enable
+            our clients to achieve their renovation and decoration objectives.
+            We align with the best business practices, building a strong base of
+            professionals who are capable of utilizing knowledge in the most
+            effective and efficient way.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End Events -->
+    <!-- Start Products -->
+    <div class="products" id="products">
+      <h2 class="main-title">OUR Products</h2>
+      <div class="container">
+        <div class="parent-of-box" id="parent-of-box"></div>
+      </div>
+    </div>
+    <!-- End Products -->
+    <!-- Start Projects -->
+    <div class="projects" id="projects">
+      <h2 class="main-title">OUR PROJECTS</h2>
+      <div class="container" id="container"></div>
+    </div>
+    <!-- End Projects -->
+
+    <!-- Start Testimonials -->
+    <div class="testimonials" id="testimonials">
+      <h2 class="main-title">Testimonials</h2>
+      <div class="container">
+        <div class="box">
+          <div class="content">
+            <h3>Mohamed Farag</h3>
+            <p>Full Stack Developer</p>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="far fa-star active"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="content">
+            <h3>Mohamed Ibrahim</h3>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="far fa-star active"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="content">
+            <h3>Shady Nabil</h3>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="far fa-star active"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="content">
+            <h3>Amr Hendawy</h3>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="content">
+            <h3>Sherief Ashraf</h3>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="far fa-star active"></i>
+            <i class="far fa-star active"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="content">
+            <h3>Osama Mohamed</h3>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="filled fas fa-star"></i>
+            <i class="far fa-star active"></i>
+            <i class="far fa-star active"></i>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
+              et reiciendis voluptatum, amet est natus quaerat ducimus
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Testimonials -->
+    <div class="PARTNERS">
+      <h2 class="main-title">OUR PARTNERS</h2>
+
+      <marquee behavior="scroll" direction="right" scrollamount="30">
+        <img class="img_partners" src="images/1.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/4.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/3.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/6.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/88.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/77.jpg" width="" height="200px" />
+        <img class="img_partners" src="images/99.jpg" width="" height="200px" />
+      </marquee>
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+      <i class="far fa-hand-pointer" style="font-size: 24px"></i>
+    </button>
+    <!-- Start Discount -->
+    <div class="contact" id="contact">
+      <div class="form">
+        <h1>CONTACT US</h1>
+        <form action="">
+          <input type="text" placeholder="Your Name" />
+          <input type="email" placeholder="Your Email" />
+          <input type="text" placeholder="Your Phone" />
+          <textarea
+            cols="30"
+            rows="8"
+            placeholder="Tell Us About Your Needs"
+          ></textarea>
+          <input type="submit" value="Send" />
+        </form>
+      </div>
+    </div>
+    <!-- End Discount -->
+    <!-- Start Foorter -->
+    <!-- start maping-->
+    <div class="maping">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.385374733111!2d46.67273248500002!3d24.713646584123335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f02d2adafda73%3A0xbec2f0dcbb183509!2z2KfZhNij2YjZhCDZhNmE2K_ZitmD2YjYsQ!5e0!3m2!1sar!2ssa!4v1562225254224!5m2!1sar!2ssa"
+        width="100%"
+        height="450"
+        frameborder="0"
+        style="
+          border-radius: 20px;
+          box-shadow: 0px 0px 7px 8px rgb(145, 132, 132);
+        "
+        allowfullscreen=""
+      ></iframe>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3708.7011039403537!2d39.130218214942985!3d21.636567785672245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d98b40f07cf1%3A0xc6a80098f180ee4f!2s1st%20for%20Decoration!5e0!3m2!1sen!2ssa!4v1605776489920!5m2!1sen!2ssa"
+        width="100%"
+        height="450"
+        frameborder="0"
+        style="
+          border-radius: 20px;
+          box-shadow: 0px 0px 5px 7px rgb(129, 125, 125);
+        "
+        allowfullscreen=""
+      ></iframe>
+    </div>
+    <!-- end maping-->
+
+    <footer>
+      <div class="container">
+        <div class="define">
+          <h1 class="title"><img src="/images/logo.png" width="100px" /></h1>
+          <ul class="social-media">
+            <li>
+              <a href="https://facebook.com/1st_decoration-227882377975147">
+                <i class="fab fa-facebook fa-lg"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/1stfordecoration/">
+                <i class="fab fa-instagram fa-lg"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="https://twitter.com/1stdecoration/">
+                <i class="fab fa-twitter fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="content">FIRST FOR DECORATION</div>
+        </div>
+        <ul class="links">
+          <li><a href="#about">ABOUT US</a></li>
+          <li><a href="#products">OUR PRODUCTS</a></li>
+          <li><a href="#projects">OUR PROJECTS</a></li>
+          <li><a href="#contact">CONTACT US</a></li>
+        </ul>
+        <ul class="info">
+          <li>
+            <i class="fas fa-map-marker-alt fa-fw"></i>
+            <p>AL Rahmania, Riyadh Saudi Arabia</p>
+          </li>
+          <li>
+            <i class="far fa-clock fa-fw"></i>
+            <p>Phone: ‎+966 11 419 2110</p>
+          </li>
+          <li>
+            <i class="fas fa-phone-volume fa-fw"></i>
+            <p>
+              Email:
+              <a href="mailto:info@1stdecor.com"> info@1stdecor.com</a>
+            </p>
+          </li>
+          <li>
+            <i class="fas fa-phone-volume fa-fw"></i>
+            <p>Fax: <a href="#"> ‎+966 12 215 1888</a></p>
+          </li>
+        </ul>
+      </div>
+      <p class="name">Made With Nabil</p>
+    </footer>
+
+    <script>
+      const handleOnSelectEnglish = () => {
+        localStorage.setItem('lang', 'en')
+      }
+      const handleOnSelectArabic = () => {
+        localStorage.setItem('lang', 'ar')
+        window.location.pathname = 'page/ar.html'
+      }
+    </script>
+    <!-- End Foorter -->
+    <script src="main.js"></script>
+  </body>
+</html>
